@@ -1,0 +1,172 @@
+/* Complete Professional Override - Remove All Colorful Elements */
+
+/* Remove all animations and colorful backgrounds */
+* {
+    animation: none !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Professional color scheme only */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --text-color: #2c3e50;
+    --light-bg: #ecf0f1;
+    --white: #ffffff;
+}
+
+/* Remove all colorful elements */
+.hero-bg-animation,
+.floating-particles,
+.wave-bg,
+.mesh-bg,
+.geometric-bg,
+.welcome-splash,
+.splash-overlay {
+    display: none !important;
+}
+
+/* Professional hero section */
+.hero {
+    background: var(--primary-color) !important;
+    background-image: none !important;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--text-color) !important;
+    border: 1px solid #ddd !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+}
+
+.hero-title {
+    color: var(--primary-color) !important;
+}
+
+.hero-subtitle {
+    color: #666 !important;
+}
+
+/* Professional buttons */
+.cta-btn {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+}
+
+.cta-btn:hover {
+    background: var(--secondary-color) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Professional badges */
+.hero-badge,
+.coverage-badge {
+    background: var(--accent-color) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Professional sections */
+.features-preview {
+    background: var(--light-bg) !important;
+}
+
+.features-preview::before {
+    display: none !important;
+}
+
+.quick-services {
+    background: var(--primary-color) !important;
+}
+
+.service-preview {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #ddd !important;
+}
+
+.service-preview::before {
+    display: none !important;
+}
+
+.service-preview .price {
+    background: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* Professional stat items */
+.stat-item {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #ddd !important;
+    color: var(--text-color) !important;
+}
+
+.stat-number {
+    color: var(--accent-color) !important;
+}
+
+/* Professional header */
+header {
+    background: var(--primary-color) !important;
+}
+
+/* Professional brand colors - keep minimal branding */
+.brand-text {
+    color: #f39c12 !important;
+    background: none !important;
+    -webkit-text-fill-color: #f39c12 !important;
+}
+
+.guard-text {
+    color: #e74c3c !important;
+}
+
+.security-text {
+    color: #3498db !important;
+}
+
+.security-text::after {
+    display: none !important;
+}
+
+/* Remove all shimmer and glow effects */
+.feature-preview::before,
+.service-preview::before,
+.testimonial-item::before {
+    display: none !important;
+}
+
+/* Professional testimonials */
+.testimonials-home {
+    background: var(--white) !important;
+}
+
+.testimonial-item {
+    border: 1px solid #ddd !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+}
+
+/* Remove excessive hover effects */
+.animate-card-hover:hover,
+.feature-preview:hover,
+.service-preview:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* Professional footer */
+footer {
+    background: var(--secondary-color) !important;
+}
+
+/* Remove all keyframe animations */
+@keyframes gradientShift { 0%, 100% { opacity: 1; } }
+@keyframes shimmer { 0%, 100% { opacity: 0; } }
+@keyframes rotate { 0%, 100% { opacity: 0; } }
+@keyframes bounce { 0%, 100% { transform: none; } }
+@keyframes pulse { 0%, 100% { transform: none; } }
+@keyframes glow { 0%, 100% { box-shadow: none; } }
+@keyframes floatParticle { 0%, 100% { opacity: 0; } }
