@@ -53,6 +53,44 @@
     text-shadow: 0 0 30px rgba(0,212,255,1);
 }
 
+@media (max-width: 768px) {
+    .splash-logo-container {
+        gap: 0.5rem;
+    }
+    .splash-logo-text {
+        font-size: 2rem;
+        gap: 0.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .splash-logo-img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-logo-container {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    .splash-logo-text {
+        font-size: 1.4rem;
+        gap: 0.1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        line-height: 1;
+    }
+    .splash-logo-img {
+        height: 40px;
+    }
+    .splash-brand-text,
+    .splash-guard-text,
+    .splash-security-text {
+        display: block;
+    }
+}
+
 @keyframes brandGlow {
     0%, 100% {
         background-position: 0% 50%;

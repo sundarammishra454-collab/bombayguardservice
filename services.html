@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Services - Bombay Guard Security</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="advanced-styles.css">
@@ -149,63 +149,9 @@
         <p>&copy; 2025 Bombay Guard Security. All rights reserved. | Licensed Security Service Provider</p>
     </footer>
 
-    <script>
-        function toggleContactInfo() {
-            const contactInfo = document.getElementById('contactInfo');
-            if (contactInfo) {
-                contactInfo.classList.toggle('show');
-            }
-        }
-        
-        document.addEventListener('click', function(event) {
-            const contactInfo = document.getElementById('contactInfo');
-            const contactFab = document.querySelector('.contact-fab');
-            
-            if (contactInfo && contactFab && 
-                !contactInfo.contains(event.target) && 
-                !contactFab.contains(event.target)) {
-                contactInfo.classList.remove('show');
-            }
-        });
-    </script>
     <script src="script.js"></script>
     <script src="advanced-script.js"></script>
     <script src="service-script.js"></script>
-    <script>
-        // Mobile Menu Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if (mobileMenuToggle && navLinks) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    navLinks.classList.toggle('active');
-                    mobileMenuToggle.classList.toggle('active');
-                });
-                
-                const navLinkItems = document.querySelectorAll('.nav-link');
-                navLinkItems.forEach(link => {
-                    link.addEventListener('click', function() {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.classList.remove('active');
-                    });
-                });
-                
-                document.addEventListener('click', function(event) {
-                    if (!mobileMenuToggle.contains(event.target) && !navLinks.contains(event.target)) {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.classList.remove('active');
-                    }
-                });
-            }
-        });
-        
-        function toggleContactInfo() {
-            const contactInfo = document.getElementById('contactInfo');
-            if (contactInfo) {
-                contactInfo.classList.toggle('show');
-            }
-        }
-    </script>
+    <script src="mobile-menu.js"></script>
 </body>
 </html>

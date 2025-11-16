@@ -83,6 +83,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
+
 // Observe service cards when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     const serviceCards = document.querySelectorAll('.service-card');
