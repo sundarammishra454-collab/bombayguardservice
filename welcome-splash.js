@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Insert splash screen at the beginning of body
     document.body.insertAdjacentHTML('afterbegin', splashHTML);
     
-    // Hide splash screen after 5 seconds with fade out effect
+    // Hide splash screen after 1 second with fade out effect
     setTimeout(function() {
         const splash = document.getElementById('welcomeSplash');
         if (splash) {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 splash.remove();
             }, 800);
         }
-    }, 5000);
+    }, 1000);
     
     // Add vibrant entrance animations to page elements
     setTimeout(function() {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add sparkle effect to hero section
         addSparkleEffect();
-    }, 5500);
+    }, 1800);
 });
 
 // Add sparkle effect function

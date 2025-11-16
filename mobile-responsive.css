@@ -5,18 +5,19 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
-    padding: 10px;
+    padding: 6px;
     z-index: 10001;
     position: relative;
+    gap: 2px;
 }
 
 .mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: #1a1a2e;
-    margin: 3px 0;
+    width: 22px;
+    height: 2.5px;
+    background: white;
+    margin: 0;
     transition: 0.3s;
-    border-radius: 2px;
+    border-radius: 1px;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
@@ -106,6 +107,16 @@
         padding: 0;
     }
     
+    /* Header Mobile */
+    header {
+        padding: 0.5rem 0;
+    }
+    
+    nav {
+        padding: 0.4rem 0.6rem;
+        align-items: flex-start;
+    }
+    
     .smart-header {
         position: relative;
         z-index: 9999;
@@ -159,8 +170,14 @@
         display: flex;
         cursor: pointer;
         z-index: 10001;
-        padding: 0.5rem;
-        gap: 4px;
+        padding: 0.3rem;
+        gap: 2px;
+    }
+    
+    .mobile-menu-toggle span {
+        width: 20px;
+        height: 2px;
+        background: white;
     }
     
     .mobile-menu-toggle span {
@@ -187,26 +204,28 @@
     /* Logo */
     .logo {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         flex-direction: column;
-        gap: 0.2rem;
+        gap: 0.1rem;
+        flex: 1;
     }
     
     .logo h1 {
-        font-size: 1rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 200px;
+        font-size: 0.65rem;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        max-width: 95px;
         margin: 0;
-        line-height: 1.2;
+        line-height: 0.9;
         display: flex;
         align-items: center;
-        gap: 0.3rem;
+        gap: 0.2rem;
+        letter-spacing: 0.3px;
     }
     
     .logo-img {
-        height: 35px;
+        height: 32px;
         width: auto;
         flex-shrink: 0;
     }
@@ -214,14 +233,19 @@
     .logo .brand-text,
     .logo .guard-text,
     .logo .security-text {
-        font-size: 0.75rem;
+        font-size: 0.55rem;
         font-weight: 700;
         display: inline;
+        line-height: 0.9;
     }
     
     .tagline {
-        font-size: 0.6rem;
-        display: none;
+        font-size: 0.45rem;
+        display: block;
+        line-height: 0.9;
+        white-space: normal;
+        max-width: 95px;
+        color: rgba(255, 255, 255, 0.8);
     }
     
     /* Container */
@@ -233,7 +257,7 @@
     /* Hero Section */
     .hero {
         min-height: auto;
-        padding: 80px 0 2rem 0;
+        padding: 65px 0 1.5rem 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -417,7 +441,7 @@
     
     /* Page Content Spacing */
     .page-content {
-        padding-top: 80px;
+        padding-top: 65px;
     }
     
     /* Features Section */
@@ -466,6 +490,26 @@
 
 /* Small Mobile Devices */
 @media (max-width: 480px) {
+    .logo h1 {
+        font-size: 0.6rem;
+        max-width: 85px;
+    }
+    
+    .logo .brand-text,
+    .logo .guard-text,
+    .logo .security-text {
+        font-size: 0.5rem;
+    }
+    
+    .logo-img {
+        height: 30px;
+    }
+    
+    .tagline {
+        font-size: 0.4rem;
+        max-width: 85px;
+    }
+    
     .hero-title {
         font-size: 1.8rem;
         line-height: 1.3;
@@ -474,14 +518,6 @@
     .hero-subtitle {
         font-size: 0.9rem;
         line-height: 1.4;
-    }
-    
-    .logo h1 {
-        font-size: 0.9rem;
-    }
-    
-    .logo-img {
-        height: 35px;
     }
     
     .feature-preview h4 {
