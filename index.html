@@ -196,9 +196,12 @@
             const navLinks = document.querySelector('.nav-links');
             
             if (mobileMenuToggle && navLinks) {
-                mobileMenuToggle.addEventListener('click', function() {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     navLinks.classList.toggle('active');
                     mobileMenuToggle.classList.toggle('active');
+                    console.log('Menu toggled:', navLinks.classList.contains('active'));
                 });
                 
                 // Close menu when clicking on a link
