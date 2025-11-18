@@ -1,62 +1,73 @@
 // Hide/Show Header on Scroll with Hover Reveal
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
-    let lastScrollTop = 0;
-    let scrollTimeout;
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let ticking = false;
     let isHovering = false;
-    
+    const HIDE_THRESHOLD = 80; // only hide when scrolled this far
+    const DELTA = 10; // minimal delta before reacting
+
     if (!header) return;
-    
-    // Track scroll position
-    window.addEventListener('scroll', function() {
+
+    // Core scroll handler (uses requestAnimationFrame for performance)
+    function onScroll() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Clear previous timeout
-        if (scrollTimeout) clearTimeout(scrollTimeout);
-        
-        // Show header while scrolling
-        header.classList.remove('header-hidden');
-        
-        // Hide header after scroll stops (if not hovering)
-        scrollTimeout = setTimeout(function() {
-            if (currentScroll > 80 && !isHovering) {
-                header.classList.add('header-hidden');
-            }
-        }, 1500);
-        
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    });
-    
-    // Show header on hover
+
+        // avoid reacting to tiny scrolls
+        if (Math.abs(currentScroll - lastScrollTop) <= DELTA) {
+            ticking = false;
+            return;
+        }
+
+        if (currentScroll > lastScrollTop && currentScroll > HIDE_THRESHOLD) {
+            // Scrolling down -> hide header
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up -> show header
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollTop = Math.max(0, currentScroll);
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Show header on hover (desktop) or when touching near top (mobile)
     header.addEventListener('mouseenter', function() {
         isHovering = true;
         header.classList.remove('header-hidden');
     });
-    
+
     header.addEventListener('mouseleave', function() {
         isHovering = false;
-        if (window.pageYOffset > 80) {
+        // re-hide if we're scrolled down
+        if ((window.pageYOffset || document.documentElement.scrollTop) > HIDE_THRESHOLD) {
             header.classList.add('header-hidden');
         }
     });
-    
-    // Show header when mouse is at the top of page
+
+    // For desktops: reveal header when mouse moves near top edge
     document.addEventListener('mousemove', function(e) {
-        if (e.clientY < 50 && window.pageYOffset > 80) {
+        if (e.clientY < 50) {
             header.classList.remove('header-hidden');
-            isHovering = true;
-            // Auto-hide again after 2 seconds of no interaction
-            if (scrollTimeout) clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(function() {
-                if (!isHovering) {
-                    header.classList.add('header-hidden');
-                }
-            }, 2000);
         }
     });
-    
-    // Keep header visible at the top of the page
-    if (window.pageYOffset <= 80) {
+
+    // For touch devices: reveal when user swipes/touches near top
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches && e.touches[0] && e.touches[0].clientY < 60) {
+            header.classList.remove('header-hidden');
+        }
+    }, { passive: true });
+
+    // Ensure header visible at top
+    if ((window.pageYOffset || document.documentElement.scrollTop) <= HIDE_THRESHOLD) {
         header.classList.remove('header-hidden');
     }
 });
