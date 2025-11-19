@@ -394,9 +394,10 @@ function closeServiceModal() {
 // Initialize modal close functionality
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('serviceModal');
-    const closeBtn = document.querySelector('.close');
+    const modalBody = document.getElementById('modalBody');
     
     // Close modal when clicking the X button
+    const closeBtn = document.querySelector('.close');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeServiceModal);
     }
@@ -405,6 +406,50 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
+                closeServiceModal();
+            }
+        });
+    }
+    
+    // Event delegation for dynamic onclick handlers in modal content
+    if (modalBody) {
+        modalBody.addEventListener('click', function(e) {
+            // Handle price card clicks (openBookingForm)
+            if (e.target.closest('.price-card.clickable-card')) {
+                e.preventDefault();
+                const card = e.target.closest('.price-card.clickable-card');
+                const onclickAttr = card.getAttribute('onclick');
+                if (onclickAttr) {
+                    // Extract function call from onclick attribute
+                    const match = onclickAttr.match(/openBookingForm\('([^']+)',\s*'([^']+)'\)/);
+                    if (match) {
+                        openBookingForm(match[1], match[2]);
+                    }
+                }
+            }
+            
+            // Handle book now buttons (top level)
+            if (e.target.closest('.book-now-btn')) {
+                e.preventDefault();
+                const btn = e.target.closest('.book-now-btn');
+                const onclickAttr = btn.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/openBookingForm\('([^']+)'\)/);
+                    if (match) {
+                        openBookingForm(match[1]);
+                    }
+                }
+            }
+            
+            // Handle close buttons in modals
+            if (e.target.closest('.close-btn') || (e.target.classList && e.target.classList.contains('close'))) {
+                e.preventDefault();
+                closeServiceModal();
+            }
+            
+            // Handle cancel buttons in booking form
+            if (e.target.textContent.includes('Cancel') && e.target.tagName === 'BUTTON') {
+                e.preventDefault();
                 closeServiceModal();
             }
         });

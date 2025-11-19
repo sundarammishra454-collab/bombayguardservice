@@ -63,7 +63,7 @@
                         <li class="feature-item" data-delay="0.4s" data-translate="services.residential.features.3">✓ Emergency Response</li>
                     </ul>
                     <div class="service-price pulse-price" data-translate="services.residential.price">Starting from ₹17,000/month</div>
-                    <button class="service-btn morphing-btn" onclick="openServiceModal('residential')">
+                    <button class="service-btn morphing-btn" id="serviceBtn-residential" data-service="residential">
                         <span data-translate="buttons.learn">Learn More</span>
                         <div class="btn-ripple"></div>
                     </button>
@@ -80,7 +80,7 @@
                         <li class="feature-item" data-delay="0.4s" data-translate="services.commercial.features.3">✓ Risk Assessment</li>
                     </ul>
                     <div class="service-price pulse-price" data-translate="services.commercial.price">Starting from ₹20,000/month</div>
-                    <button class="service-btn morphing-btn" onclick="openServiceModal('commercial')">
+                    <button class="service-btn morphing-btn" id="serviceBtn-commercial" data-service="commercial">
                         <span data-translate="buttons.learn">Learn More</span>
                         <div class="btn-ripple"></div>
                     </button>
@@ -97,7 +97,7 @@
                         <li class="feature-item" data-delay="0.4s" data-translate="services.event.features.3">✓ Emergency Planning</li>
                     </ul>
                     <div class="service-price pulse-price" data-translate="services.event.price">Starting from ₹2,000/day</div>
-                    <button class="service-btn morphing-btn" onclick="openServiceModal('event')">
+                    <button class="service-btn morphing-btn" id="serviceBtn-event" data-service="event">
                         <span data-translate="buttons.learn">Learn More</span>
                         <div class="btn-ripple"></div>
                     </button>
@@ -116,12 +116,12 @@
     </div>
 
     <!-- Floating Action Button -->
-    <button class="fab tooltip" data-tooltip="Quick Contact" onclick="window.location.href='contact.html'">
+    <button class="fab tooltip" id="contactFabServices" data-tooltip="Quick Contact">
         📞
     </button>
     
     <!-- Floating Contact Button -->
-    <button class="contact-fab" onclick="toggleContactInfo()">
+    <button class="contact-fab" id="toggleContactServices">
         ℹ️
     </button>
     
@@ -155,5 +155,6 @@
     <script src="service-script.js"></script>
     <script src="mobile-menu.js"></script>
     <script src="header-scroll.js"></script>
+    <script src="security-handlers.js"></script>
 </body>
 </html>

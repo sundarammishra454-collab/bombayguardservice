@@ -120,9 +120,9 @@
                         <div class="contact-icon rotating-icon">📞</div>
                         <div class="contact-text">
                             <strong class="contact-title">Call Us Now</strong>
-                            <p class="contact-link" onclick="window.open('tel:+919819670208')">+91 98196 70208</p>
-                            <p class="contact-link" onclick="window.open('tel:+919322303450')">+91 93223 03450</p>
-                            <p class="contact-link" onclick="window.open('tel:+917276053331')">+91 72760 53331</p>
+                            <p class="contact-link phone-link" data-phone="+919819670208">+91 98196 70208</p>
+                            <p class="contact-link phone-link" data-phone="+919322303450">+91 93223 03450</p>
+                            <p class="contact-link phone-link" data-phone="+917276053331">+91 72760 53331</p>
                         </div>
                         <div class="contact-ripple"></div>
                     </div>
@@ -130,7 +130,7 @@
                         <div class="contact-icon rotating-icon">📧</div>
                         <div class="contact-text">
                             <strong class="contact-title">Email Us</strong>
-                            <p class="contact-link" onclick="window.open('mailto:bombayguard@gmail.com')">bombayguard@gmail.com</p>
+                            <p class="contact-link email-link" data-email="bombayguard@gmail.com">bombayguard@gmail.com</p>
                         </div>
                         <div class="contact-ripple"></div>
                     </div>
@@ -156,12 +156,12 @@
     </main>
 
     <!-- Floating Action Button -->
-    <button class="fab tooltip" data-tooltip="Quick Contact" onclick="window.location.href='contact.html'">
+    <button class="fab tooltip" data-tooltip="Quick Contact" id="floatingContactBtn2">
         📞
     </button>
     
     <!-- Floating Contact Button -->
-    <button class="contact-fab" onclick="toggleContactInfo()">
+    <button class="contact-fab" id="contactFabBtn2">
         ℹ️
     </button>
     
@@ -195,5 +195,6 @@
     <script src="contact-script.js"></script>
     <script src="mobile-menu.js"></script>
     <script src="header-scroll.js"></script>
+    <script src="security-handlers.js"></script>
 </body>
 </html>

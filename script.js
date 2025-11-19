@@ -68,8 +68,43 @@ const observer = new IntersectionObserver(function(entries) {
 // Toggle contact info panel
 function toggleContactInfo() {
     const contactInfo = document.getElementById('contactInfo');
-    contactInfo.classList.toggle('show');
+    if (contactInfo) {
+        contactInfo.style.display = contactInfo.style.display === 'none' ? 'block' : 'none';
+    }
 }
+
+// Safe event listeners for buttons (replaces onclick handlers)
+document.addEventListener('DOMContentLoaded', function() {
+    // CTA buttons
+    const ctaContactBtn = document.getElementById('ctaContactBtn');
+    if (ctaContactBtn) {
+        ctaContactBtn.addEventListener('click', function() {
+            window.location.href = 'contact.html';
+        });
+    }
+    
+    const ctaServicesBtn = document.getElementById('ctaServicesBtn');
+    if (ctaServicesBtn) {
+        ctaServicesBtn.addEventListener('click', function() {
+            window.location.href = 'services.html';
+        });
+    }
+    
+    // Floating buttons
+    const floatingContactBtn = document.getElementById('floatingContactBtn');
+    if (floatingContactBtn) {
+        floatingContactBtn.addEventListener('click', function() {
+            window.location.href = 'contact.html';
+        });
+    }
+    
+    const contactFabBtn = document.getElementById('contactFabBtn');
+    if (contactFabBtn) {
+        contactFabBtn.addEventListener('click', function() {
+            toggleContactInfo();
+        });
+    }
+});
 
 // Close contact info when clicking outside
 document.addEventListener('click', function(event) {

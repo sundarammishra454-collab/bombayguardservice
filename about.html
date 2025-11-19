@@ -247,25 +247,25 @@
                     </div>
                 </div>
                 <div class="testimonial-controls">
-                    <button class="testimonial-nav prev" onclick="changeTestimonial(-1)">‹</button>
+                    <button class="testimonial-nav prev" id="testimonialPrevBtn" data-direction="-1">‹</button>
                     <div class="testimonial-indicators">
-                        <span class="indicator active" onclick="currentTestimonial(1)"></span>
-                        <span class="indicator" onclick="currentTestimonial(2)"></span>
-                        <span class="indicator" onclick="currentTestimonial(3)"></span>
+                        <span class="indicator active" id="testimonialInd-1" data-testimonial="1"></span>
+                        <span class="indicator" id="testimonialInd-2" data-testimonial="2"></span>
+                        <span class="indicator" id="testimonialInd-3" data-testimonial="3"></span>
                     </div>
-                    <button class="testimonial-nav next" onclick="changeTestimonial(1)">›</button>
+                    <button class="testimonial-nav next" id="testimonialNextBtn" data-direction="1">›</button>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Floating Action Button -->
-    <button class="fab tooltip" data-tooltip="Quick Contact" onclick="window.location.href='contact.html'">
+    <button class="fab tooltip" id="contactFabAbout" data-tooltip="Quick Contact">
         📞
     </button>
     
     <!-- Floating Contact Button -->
-    <button class="contact-fab" onclick="toggleContactInfo()">
+    <button class="contact-fab" id="toggleContactAbout">
         ℹ️
     </button>
     
@@ -299,5 +299,6 @@
     <script src="about-script.js"></script>
     <script src="mobile-menu.js"></script>
     <script src="header-scroll.js"></script>
+    <script src="security-handlers.js"></script>
 </body>
 </html>
