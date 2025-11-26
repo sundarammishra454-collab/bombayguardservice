@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Bombay Guard Security</title>
+    <link rel="icon" href="1000079924.png" type="image/png">
+    <link rel="stylesheet" href="admin-styles.css">
+    <script src="auth-check.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>📊 Admin Dashboard</h1>
+            <div class="admin-actions">
+                <button onclick="exportToExcel()" class="export-btn">📥 Export to Excel</button>
+                <button onclick="clearData()" class="clear-btn">🗑️ Clear Data</button>
+                <button onclick="logout()" class="logout-btn">🚪 Logout</button>
+            </div>
+        </header>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <h3 id="totalBookings">0</h3>
+                <p>Total Bookings</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="todayBookings">0</h3>
+                <p>Today's Bookings</p>
+            </div>
+        </div>
+
+        <div class="bookings-section">
+            <h2>📋 Booking Submissions</h2>
+            <div class="table-container">
+                <table id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Date/Time</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Service</th>
+                            <th>Location</th>
+                            <th>Requirements</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <!-- Bookings will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+</html>

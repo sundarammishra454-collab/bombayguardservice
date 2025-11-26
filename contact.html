@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="background-animations.css">
     <link rel="stylesheet" href="ui-enhancements.css">
     <link rel="stylesheet" href="mobile-responsive.css">
+    <script src="auth-check.js"></script>
 </head>
 <body>
     <header class="smart-header">
@@ -24,6 +25,7 @@
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li><button onclick="logout()" class="nav-link logout-btn">Logout</button></li>
             </ul>
 
             <div class="mobile-menu-toggle">
@@ -51,7 +53,7 @@
             </div>
             <div class="contact-container">
                 <div class="contact-form-section animate-slide-left">
-                    <form class="contact-form morphing-form" onsubmit="handleContactSubmit(event)">
+                    <form class="contact-form morphing-form" onsubmit="handleSubmit(event)">
                         <div class="form-group floating-group" data-delay="0.1">
                             <input type="text" id="name" placeholder="Your Name" required class="morphing-input">
                             <label for="name" class="floating-label">Full Name *</label>
@@ -192,6 +194,7 @@
 
     <script src="script.js"></script>
     <script src="advanced-script.js"></script>
+    <script src="whatsapp-integration.js"></script>
     <script src="contact-script.js"></script>
     <script src="mobile-menu.js"></script>
     <script src="header-scroll.js"></script>

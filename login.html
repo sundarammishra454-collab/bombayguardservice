@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Bombay Guard Security</title>
+    <link rel="icon" href="1000079924.png" type="image/png">
+    <link rel="stylesheet" href="login-styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <img src="1000079924.png" alt="Logo" class="login-logo">
+                <h1>BOMBAY GUARD</h1>
+                <p>Security Services</p>
+            </div>
+            
+            <div class="login-tabs">
+                <button type="button" class="tab-btn active" onclick="showTab('user')">User Login</button>
+                <button type="button" class="tab-btn" onclick="showTab('admin')">Admin Login</button>
+            </div>
+            
+            <!-- User Login Form -->
+            <form class="login-form" id="userForm" onsubmit="handleUserLogin(event)">
+                <h2>User Login</h2>
+                
+                <div class="form-group">
+                    <input type="text" id="userName" placeholder="Your Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" id="userContact" placeholder="Contact Number" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Enter Website</button>
+            </form>
+            
+            <!-- Admin Login Form -->
+            <form class="login-form hidden" id="adminForm" onsubmit="handleAdminLogin(event)">
+                <h2>Admin Login</h2>
+                
+                <div class="form-group">
+                    <input type="text" id="adminUsername" placeholder="Username" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="adminPassword" placeholder="Password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Login</button>
+                
+                <div class="demo-credentials">
+                    <p><strong>Admin Credentials:</strong></p>
+                    <p>Username: admin</p>
+                    <p>Password: admin123</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="login-script.js"></script>
+</body>
+</html>

@@ -134,7 +134,7 @@ function validateSingleField(input) {
     return true;
 }
 
-// Enhanced Form Submission
+// Enhanced Form Submission with WhatsApp Integration
 function handleSubmit(event) {
     event.preventDefault();
     
@@ -171,15 +171,31 @@ function handleSubmit(event) {
         requirements: event.target.querySelector('#requirements').value
     };
     
-    // Simulate API call
+    // Process submission
     setTimeout(() => {
         // Hide loading, show success
         btnLoader.style.display = 'none';
         submitBtn.classList.add('success');
         
+        // Save booking data for admin dashboard
+        const stored = localStorage.getItem('bookingSubmissions') || '[]';
+        const bookings = JSON.parse(stored);
+        const booking = {
+            ...formData,
+            timestamp: new Date().toISOString(),
+            id: Date.now()
+        };
+        bookings.unshift(booking);
+        localStorage.setItem('bookingSubmissions', JSON.stringify(bookings));
+        
+        // Send WhatsApp notifications
+        if (typeof whatsappNotifier !== 'undefined') {
+            whatsappNotifier.sendBookingNotifications(formData);
+        }
+        
         // Show success message
         setTimeout(() => {
-            alert(`Thank you ${formData.name}! We've received your request for ${formData.service} services. Our team will contact you within 24 hours at ${formData.phone}.`);
+            alert(`Thank you ${formData.name}! We've received your request for ${formData.service} services. WhatsApp notifications have been sent to both you and our admin team.`);
             
             // Reset form
             event.target.reset();
