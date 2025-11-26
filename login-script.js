@@ -42,7 +42,8 @@ function handleAdminLogin(event) {
     const username = document.getElementById('adminUsername').value;
     const password = document.getElementById('adminPassword').value;
     
-    if (username === 'admin' && password === 'admin123') {
+    // Validate against secure credentials (should be moved to backend in production)
+    if (validateAdminCredentials(username, password)) {
         // Store admin session
         sessionStorage.setItem('isLoggedIn', 'true');
         sessionStorage.setItem('userType', 'admin');
@@ -51,6 +52,15 @@ function handleAdminLogin(event) {
     } else {
         alert('Invalid admin credentials');
     }
+}
+
+// Validate admin credentials - IMPORTANT: Move this to backend for production
+function validateAdminCredentials(username, password) {
+    // TODO: Replace with secure backend authentication
+    const validUsername = 'admin';
+    const validPassword = 'admin123';
+    
+    return username === validUsername && password === validPassword;
 }
 
 // Check if already logged in
