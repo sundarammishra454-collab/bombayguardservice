@@ -43,7 +43,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: all 0.3s ease;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .export-btn {
@@ -53,6 +55,7 @@ body {
 
 .export-btn:hover {
     background: #218838;
+    transform: translateY(-3px);
 }
 
 .clear-btn {
@@ -62,6 +65,7 @@ body {
 
 .clear-btn:hover {
     background: #c82333;
+    transform: translateY(-3px);
 }
 
 .logout-btn {
@@ -72,11 +76,14 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: all 0.3s ease;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .logout-btn:hover {
     background: #5a6268;
+    transform: translateY(-3px);
 }
 
 .stats-section {
@@ -91,12 +98,19 @@ body {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
 .stat-card h3 {
     font-size: 2rem;
     color: #ffd700;
     margin-bottom: 10px;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
 }
 
 .bookings-section h2 {
