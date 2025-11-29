@@ -46,7 +46,7 @@ class AdminDashboard {
         const tbody = document.getElementById('bookingsTableBody');
         
         if (this.bookings.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No bookings yet</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No bookings yet</td></tr>';
             return;
         }
 
@@ -56,8 +56,10 @@ class AdminDashboard {
                 <td>${booking.name}</td>
                 <td>${booking.phone}</td>
                 <td>${booking.email}</td>
-                <td>${booking.service}</td>
-                <td>${booking.location || 'N/A'}</td>
+                <td>${booking.service || booking.serviceType || 'N/A'}</td>
+                <td>${booking.location || booking.address || 'N/A'}</td>
+                <td>${booking.startDate ? new Date(booking.startDate).toLocaleDateString('en-IN') : 'N/A'}</td>
+                <td>${booking.type === 'service_booking' ? 'Service Booking' : 'Contact Form'}</td>
                 <td>${booking.requirements || 'N/A'}</td>
             </tr>
         `).join('');
@@ -70,7 +72,7 @@ class AdminDashboard {
         }
 
         const ws_data = [
-            ['Date/Time', 'Name', 'Phone', 'Email', 'Service', 'Location', 'Requirements']
+            ['Date/Time', 'Name', 'Phone', 'Email', 'Service', 'Location', 'Start Date', 'Type', 'Requirements']
         ];
 
         this.bookings.forEach(booking => {
@@ -79,8 +81,10 @@ class AdminDashboard {
                 booking.name,
                 booking.phone,
                 booking.email,
-                booking.service,
-                booking.location || 'N/A',
+                booking.service || booking.serviceType || 'N/A',
+                booking.location || booking.address || 'N/A',
+                booking.startDate ? new Date(booking.startDate).toLocaleDateString('en-IN') : 'N/A',
+                booking.type === 'service_booking' ? 'Service Booking' : 'Contact Form',
                 booking.requirements || 'N/A'
             ]);
         });

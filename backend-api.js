@@ -2,7 +2,7 @@
 
 // API Configuration
 const API_CONFIG = {
-    baseURL: 'http://localhost:3000/api',
+    baseURL: 'https://bombayguardservice.vercel.app/api',
     timeout: 10000,
     retries: 3
 };

@@ -292,7 +292,7 @@ Add to all HTML `<head>` sections:
     style-src 'self' 'unsafe-inline'; 
     img-src 'self' data:; 
     font-src 'self'; 
-    connect-src 'self' http://localhost:3000
+    connect-src 'self' https://bombayguardservice.vercel.app
 ">
 ```
 

@@ -121,15 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         addSimpleTextReveal();
     }, 500);
-    
-    // Wire up Learn More / service buttons to open modal
-    const serviceButtons = document.querySelectorAll('.service-btn');
-    serviceButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const svc = btn.dataset.service || btn.getAttribute('data-service');
-            if (svc) openServiceModal(svc);
-        });
-    });
 });
 
 // Optimized Service Modal
@@ -388,30 +379,6 @@ function openServiceModal(serviceType) {
     };
     
     modalBody.innerHTML = serviceDetails[serviceType].content;
-    // Add a WhatsApp chat button to modal header for quick inquiries
-    try {
-        const header = modalBody.querySelector('.modal-header');
-        if (header) {
-            const waBtn = document.createElement('button');
-            waBtn.className = 'wa-chat-btn';
-            waBtn.textContent = '💬 Chat on WhatsApp';
-            waBtn.style.cssText = 'margin-left:12px;padding:8px 12px;background:#25D366;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;';
-            waBtn.addEventListener('click', () => {
-                // Prepare a short message including the service type
-                const shortMsg = `Hello, I am interested in your ${serviceDetails[serviceType].title}. Please share details and pricing for ${serviceType} services.`;
-                if (typeof whatsappNotifier !== 'undefined' && whatsappNotifier && whatsappNotifier.openWhatsAppWeb) {
-                    whatsappNotifier.openWhatsAppWeb(whatsappNotifier.config.adminWhatsApp, shortMsg);
-                } else {
-                    // Fallback: open wa.me directly
-                    const encoded = encodeURIComponent(shortMsg);
-                    window.open(`https://wa.me/919819670208?text=${encoded}`, '_blank');
-                }
-            });
-            header.appendChild(waBtn);
-        }
-    } catch (err) {
-        console.warn('Could not add WhatsApp button to service modal', err);
-    }
 }
 
 // Optimized Close Modal Function
@@ -587,41 +554,39 @@ function getPackageOptions(serviceType, selectedPackage = null) {
 async function submitBookingData(serviceType) {
     const bookingData = {
         serviceType: serviceType,
-        fullName: document.getElementById('fullName').value,
+        name: document.getElementById('fullName').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
         address: document.getElementById('address').value,
-        servicePackage: document.getElementById('servicePackage').value,
+        service: document.getElementById('servicePackage').value,
         startDate: document.getElementById('startDate').value,
-        requirements: document.getElementById('requirements').value
+        requirements: document.getElementById('requirements').value,
+        location: document.getElementById('address').value
     };
     
-    if (!bookingData.fullName || !bookingData.phone || !bookingData.email || !bookingData.address || !bookingData.servicePackage || !bookingData.startDate) {
+    if (!bookingData.name || !bookingData.phone || !bookingData.email || !bookingData.address || !bookingData.service || !bookingData.startDate) {
         alert('Please fill all required fields');
         return;
     }
     
-    try {
-        const response = await fetch('http://localhost:3000/api/bookings', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(bookingData)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            showBookingConfirmation({...bookingData, id: result.bookingId});
-        } else {
-            throw new Error(result.error || 'Booking failed');
-        }
-    } catch (error) {
-        // Fallback to show confirmation even if backend is not running
-        showBookingConfirmation({...bookingData, id: Date.now()});
-        console.log('Booking data would be sent:', bookingData);
+    // Save booking data for admin dashboard
+    const stored = localStorage.getItem('bookingSubmissions') || '[]';
+    const bookings = JSON.parse(stored);
+    const booking = {
+        ...bookingData,
+        timestamp: new Date().toISOString(),
+        id: Date.now(),
+        type: 'service_booking'
+    };
+    bookings.unshift(booking);
+    localStorage.setItem('bookingSubmissions', JSON.stringify(bookings));
+    
+    // Send WhatsApp notifications
+    if (typeof whatsappNotifier !== 'undefined') {
+        whatsappNotifier.sendBookingNotifications(bookingData);
     }
+    
+    showBookingConfirmation({...bookingData, id: booking.id});
 }
 
 function showBookingConfirmation(bookingData) {

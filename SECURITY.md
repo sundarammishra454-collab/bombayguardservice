@@ -63,7 +63,7 @@ window.handleContactSubmit = async function(event) {
     }
     
     try {
-        const response = await fetch('http://localhost:3000/api/contact', {
+        const response = await fetch('https://bombayguardservice.vercel.app/api/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -120,7 +120,7 @@ window.handleContactSubmit = async function(event) {
  * 
  * Add these headers in your web server (nginx/Apache) or .htaccess:
  * 
- * Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://localhost:3000;
+ * Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://bombayguardservice.vercel.app;
  * X-Content-Type-Options: nosniff
  * X-Frame-Options: DENY
  * X-XSS-Protection: 1; mode=block
