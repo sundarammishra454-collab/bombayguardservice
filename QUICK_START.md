@@ -12,6 +12,20 @@
 | Unsafe innerHTML patterns | Changed to safe DOM creation | ✅ DONE |
 | No input validation | Added email/phone validation | ✅ DONE |
 | Dangerous DOM patterns | Replaced with safe patterns | ✅ DONE |
+| Hardcoded Credentials | Moved to backend with environment variables | ✅ DONE |
+
+---
+
+## How to Run the Application
+
+1. **Start the backend server:**
+   ```bash
+   npm install
+   node backend-api.js
+   ```
+   The server will start on `http://localhost:3000`.
+
+2. **Open `index.html` in your browser.**
 
 ---
 
@@ -38,6 +52,7 @@
 ✅ Input validation with regex
 ✅ Safe DOM creation patterns
 ✅ URL encoding for links
+✅ Admin login via backend API
 ```
 
 ---
@@ -68,6 +83,7 @@
 - [ ] Set X-Content-Type-Options: nosniff
 - [ ] Set X-Frame-Options: DENY
 - [ ] Set X-XSS-Protection: 1; mode=block
+- [ ] Set up environment variables for admin credentials on your server. Default credentials are `Sundaram` and `CK@454()`.
 
 See `SECURITY_CHECKLIST.md` for complete list.
 
@@ -79,6 +95,11 @@ See `SECURITY_CHECKLIST.md` for complete list.
 - `security-handlers.js` (NEW) - Event handlers
 - `script.js` - Enhanced with safe listeners
 - `welcome-splash.js` - Rewritten for safety
+- `login.html` - Removed hardcoded credentials
+- `login-script.js` - Updated to use backend API
+- `backend-api.js` (NEW) - Backend server for authentication
+- `package.json` (NEW) - Node.js dependencies
+- `README.md` (NEW) - Backend setup instructions
 - All HTML pages - Removed onclick
 
 ### Documentation (7 files)
@@ -117,7 +138,7 @@ Documentation:          ✅ COMPREHENSIVE
 ## Quick Questions?
 
 **What was fixed?**  
-36 security vulnerabilities (27 onclick handlers, unsafe patterns, no validation)
+36 security vulnerabilities (27 onclick handlers, unsafe patterns, no validation, hardcoded credentials)
 
 **Is it working the same?**  
 Yes, all functionality is identical. Only the code internals changed.

@@ -25,7 +25,7 @@
                 <li><a href="services.html" class="nav-link">Services</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
                 <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                <li><button onclick="logout()" class="nav-link logout-btn">Logout</button></li>
+                <li><button id="logoutBtn" class="nav-link logout-btn">Logout</button></li>
             </ul>
 
             <div class="mobile-menu-toggle">
@@ -53,7 +53,7 @@
             </div>
             <div class="contact-container">
                 <div class="contact-form-section animate-slide-left">
-                    <form class="contact-form morphing-form" onsubmit="handleSubmit(event)">
+                    <form id="contactForm" class="contact-form morphing-form">
                         <div class="form-group floating-group" data-delay="0.1">
                             <input type="text" id="name" placeholder="Your Name" required class="morphing-input">
                             <label for="name" class="floating-label">Full Name *</label>

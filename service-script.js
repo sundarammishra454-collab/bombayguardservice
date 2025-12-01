@@ -121,6 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         addSimpleTextReveal();
     }, 500);
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            logout();
+        });
+    }
 });
 
 // Optimized Service Modal
