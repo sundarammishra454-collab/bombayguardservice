@@ -44,14 +44,14 @@ class AdminDashboard {
 
     renderBookings() {
         const tbody = document.getElementById('bookingsTableBody');
-
+        
         if (this.bookings.length === 0) {
             tbody.innerHTML = '<tr><td colspan="9" class="empty-state">No bookings yet</td></tr>';
             return;
         }
 
-        // Prepare row innerHTML contents (without outer <tr>) to allow chunked DOM insertion
-        const rowsContent = this.bookings.map(booking => `
+        tbody.innerHTML = this.bookings.map(booking => `
+            <tr>
                 <td>${new Date(booking.timestamp).toLocaleString('en-IN')}</td>
                 <td>${booking.name}</td>
                 <td>${booking.phone}</td>
@@ -61,35 +61,8 @@ class AdminDashboard {
                 <td>${booking.startDate ? new Date(booking.startDate).toLocaleDateString('en-IN') : 'N/A'}</td>
                 <td>${booking.type === 'service_booking' ? 'Service Booking' : 'Contact Form'}</td>
                 <td>${booking.requirements || 'N/A'}</td>
-        `);
-
-        // If small dataset, render synchronously for simplicity
-        if (rowsContent.length < 200) {
-            tbody.innerHTML = rowsContent.map(content => `<tr>${content}</tr>`).join('');
-            return;
-        }
-
-        // For large datasets, render in chunks to keep UI responsive
-        tbody.innerHTML = '';
-        const CHUNK = 50;
-        let index = 0;
-
-        const renderChunk = () => {
-            const end = Math.min(index + CHUNK, rowsContent.length);
-            const fragment = document.createDocumentFragment();
-            for (let i = index; i < end; i++) {
-                const tr = document.createElement('tr');
-                tr.innerHTML = rowsContent[i];
-                fragment.appendChild(tr);
-            }
-            tbody.appendChild(fragment);
-            index = end;
-            if (index < rowsContent.length) {
-                requestAnimationFrame(renderChunk);
-            }
-        };
-
-        requestAnimationFrame(renderChunk);
+            </tr>
+        `).join('');
     }
 
     exportToExcel() {

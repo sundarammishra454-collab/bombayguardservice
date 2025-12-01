@@ -82,7 +82,7 @@
                  style-src 'self' 'unsafe-inline'; 
                  img-src 'self' data:; 
                  font-src 'self'; 
-                connect-src 'self' https://bombayguardservice.vercel.app">
+                 connect-src 'self' http://localhost:3000">
   ```
 
 - [ ] Enable HTTPS/TLS for entire site
