@@ -113,41 +113,30 @@ async function handleFeedbackSubmit(event) {
     btnText.style.opacity = '0';
     btnLoader.style.display = 'block';
     
-    // Submit to backend API with fallback
-    try {
-        const result = await submitFeedbackToAPI(formData);
-        
-        // Hide loading, show success
-        btnLoader.style.display = 'none';
-        submitBtn.classList.add('success');
-        
-        // Show success animation
-        showFeedbackSuccess();
-        
-        const message = result.offline ? 
-            `Thank you ${formData.name}! Your ${formData.rating}-star feedback has been saved offline.` :
-            `Thank you ${formData.name}! Your ${formData.rating}-star feedback has been submitted.`;
-        
-        showFeedbackMessage(message, 'success');
-        
-        // Reset form after delay
-        setTimeout(() => {
-            event.target.reset();
-            resetStarRating();
-            submitBtn.classList.remove('success');
-            submitBtn.disabled = false;
-            btnText.style.opacity = '1';
-        }, 3000);
-        
-    } catch (error) {
-        // Handle submission error
-        btnLoader.style.display = 'none';
-        btnText.style.opacity = '1';
+    // Save to localStorage
+    const existingFeedback = JSON.parse(localStorage.getItem('feedbackData') || '[]');
+    existingFeedback.push(formData);
+    localStorage.setItem('feedbackData', JSON.stringify(existingFeedback));
+    
+    // Hide loading, show success
+    btnLoader.style.display = 'none';
+    submitBtn.classList.add('success');
+    
+    // Show success animation
+    showFeedbackSuccess();
+    
+    const message = `Thank you ${formData.name}! Your ${formData.rating}-star feedback has been saved.`;
+    
+    showFeedbackMessage(message, 'success');
+    
+    // Reset form after delay
+    setTimeout(() => {
+        event.target.reset();
+        resetStarRating();
+        submitBtn.classList.remove('success');
         submitBtn.disabled = false;
-        
-        showFeedbackMessage('Submission failed. Please try again.', 'error');
-        console.error('Feedback submission error:', error);
-    }
+        btnText.style.opacity = '1';
+    }, 3000);
 }
 
 // Reset star rating visual state
@@ -424,23 +413,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     addRealTimeValidation();
     
     // Load and animate satisfaction meter
-    try {
-        const stats = await getFeedbackStats();
-        const meterFill = document.querySelector('.meter-fill');
-        const meterText = document.querySelector('.meter-text');
-        
-        if (meterFill && meterText) {
-            meterFill.setAttribute('data-percentage', stats.satisfactionRate);
-            setTimeout(() => {
-                animateSatisfactionMeter();
-            }, 1000);
-        }
-    } catch (error) {
-        // Use default animation
-        setTimeout(() => {
-            animateSatisfactionMeter();
-        }, 1000);
-    }
+    setTimeout(() => {
+        animateSatisfactionMeter();
+    }, 1000);
     
     // Override global handleSubmit function for this page
     window.handleFeedbackSubmit = handleFeedbackSubmit;
