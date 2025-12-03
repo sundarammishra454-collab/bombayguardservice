@@ -1,5 +1,5 @@
 // Test script to verify admin login functionality
-const http = require('http');
+const https = require('https');
 
 const testLogin = (username, password) => {
     const postData = JSON.stringify({
@@ -8,9 +8,9 @@ const testLogin = (username, password) => {
     });
 
     const options = {
-        hostname: 'localhost',
-        port: 3000,
-        path: '/login',
+        hostname: 'bombayguardservice.vercel.app',
+        port: 443,
+        path: '/api/login',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,7 +18,9 @@ const testLogin = (username, password) => {
         }
     };
 
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
+
+
         let data = '';
         
         res.on('data', (chunk) => {

@@ -20,12 +20,13 @@ app.use(bodyParser.json());
 
 // Dummy admin credentials (replace with a more secure method in a real application)
 const adminCredentials = {
-    username: process.env.ADMIN_USERNAME || 'Sundaram',
-    password: process.env.ADMIN_PASSWORD || 'CK@454()'
+    username: process.env.ADMIN_USERNAME || 'admin',
+    password: process.env.ADMIN_PASSWORD || 'admin123'
 };
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    
     
     console.log('Login attempt:', { username, providedPassword: password ? '***' : 'empty' });
     console.log('Expected credentials:', { username: adminCredentials.username, password: adminCredentials.password ? '***' : 'empty' });
