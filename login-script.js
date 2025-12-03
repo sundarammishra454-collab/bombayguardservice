@@ -39,50 +39,18 @@ function handleUserLogin(event) {
 function handleAdminLogin(event) {
     event.preventDefault();
     
-    const username = document.getElementById('adminUsername').value.trim();
+    const username = document.getElementById('adminUsername').value;
     const password = document.getElementById('adminPassword').value;
     
-    if (!username || !password) {
-        alert('Please enter both username and password');
-        return;
+    if (username === 'admin' && password === 'F0li00ne$ecureP@ss!') {
+        // Store admin session
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('userType', 'admin');
+        
+        window.location.href = 'admin.html';
+    } else {
+        alert('Invalid admin credentials');
     }
-
-    console.log('Attempting admin login for username:', username);
-
-    // Secure check against backend endpoint
-    fetch('https://bombayguardservice.vercel.app/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => {
-        console.log('Response status:', response.status);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Login response:', data);
-        if (data.success) {
-            sessionStorage.setItem('isLoggedIn', 'true');
-            sessionStorage.setItem('userType', 'admin');
-            alert('Login successful! Redirecting to admin panel...');
-            window.location.href = 'admin.html';
-        } else {
-            alert(data.message || 'Invalid admin credentials');
-        }
-    })
-    .catch(error => {
-        console.error('Admin login error:', error);
-        if (error.message.includes('Failed to fetch')) {
-            alert('Cannot connect to server. Please check your internet connection.');
-        } else {
-            alert('An error occurred during login: ' + error.message);
-        }
-    });
 }
 
 // Check if already logged in

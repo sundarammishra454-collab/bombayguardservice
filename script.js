@@ -104,13 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleContactInfo();
         });
     }
-
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            logout();
-        });
-    }
 });
 
 // Close contact info when clicking outside

@@ -328,16 +328,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Override global handleSubmit function
     window.handleSubmit = handleSubmit;
-
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleSubmit);
-    }
-
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            logout();
-        });
-    }
 });
