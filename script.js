@@ -1,7 +1,7 @@
 
 
-// Handle contact form submission
-async function handleContactSubmit(event) {
+// Handle contact form submission - Frontend only with WhatsApp
+function handleContactSubmit(event) {
     event.preventDefault();
     
     const contactData = {
@@ -18,29 +18,24 @@ async function handleContactSubmit(event) {
         return;
     }
     
-    try {
-        const response = await fetch('http://localhost:3000/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contactData)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            alert(`Thank you ${contactData.name}! We've received your request for ${contactData.service} services. Our team will contact you within 24 hours at ${contactData.phone}. For immediate assistance, call +91 98196 70208.`);
-            event.target.reset();
-        } else {
-            throw new Error(result.error || 'Submission failed');
-        }
-    } catch (error) {
-        // Fallback to show success message even if backend is not running
-        alert(`Thank you ${contactData.name}! We've received your request for ${contactData.service} services. Our team will contact you within 24 hours at ${contactData.phone}. For immediate assistance, call +91 98196 70208.`);
-        event.target.reset();
-        console.log('Contact data would be sent:', contactData);
+    // Store in localStorage for admin dashboard
+    const stored = localStorage.getItem('bookingSubmissions') || '[]';
+    const bookings = JSON.parse(stored);
+    const booking = {
+        ...contactData,
+        timestamp: new Date().toISOString(),
+        id: Date.now()
+    };
+    bookings.unshift(booking);
+    localStorage.setItem('bookingSubmissions', JSON.stringify(bookings));
+    
+    // Send WhatsApp notifications
+    if (typeof whatsappNotifier !== 'undefined') {
+        whatsappNotifier.sendBookingNotifications(contactData);
     }
+    
+    alert(`Thank you ${contactData.name}! We've received your request for ${contactData.service} services. WhatsApp notifications will be sent. For immediate assistance, call +91 98196 70208.`);
+    event.target.reset();
 }
 
 // Handle form submission (legacy)

@@ -42,7 +42,7 @@ function handleAdminLogin(event) {
     const username = document.getElementById('adminUsername').value;
     const password = document.getElementById('adminPassword').value;
     
-    if (username === 'admin' && password === 'F0li00ne$ecureP@ss!') {
+    if (username === 'Sundaram' && password === 'CK@454()') {
         // Store admin session
         sessionStorage.setItem('isLoggedIn', 'true');
         sessionStorage.setItem('userType', 'admin');
