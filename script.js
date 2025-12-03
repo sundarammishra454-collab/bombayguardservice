@@ -69,7 +69,7 @@ const observer = new IntersectionObserver(function(entries) {
 function toggleContactInfo() {
     const contactInfo = document.getElementById('contactInfo');
     if (contactInfo) {
-        contactInfo.style.display = contactInfo.style.display === 'none' ? 'block' : 'none';
+        contactInfo.classList.toggle('show');
     }
 }
 
