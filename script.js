@@ -1,6 +1,6 @@
 
 
-// Handle contact form submission - Frontend only with WhatsApp
+// Handle contact form submission - WhatsApp only
 function handleContactSubmit(event) {
     event.preventDefault();
     
@@ -17,17 +17,6 @@ function handleContactSubmit(event) {
         alert('Please fill in all required fields');
         return;
     }
-    
-    // Store in localStorage for admin dashboard
-    const stored = localStorage.getItem('bookingSubmissions') || '[]';
-    const bookings = JSON.parse(stored);
-    const booking = {
-        ...contactData,
-        timestamp: new Date().toISOString(),
-        id: Date.now()
-    };
-    bookings.unshift(booking);
-    localStorage.setItem('bookingSubmissions', JSON.stringify(bookings));
     
     // Send WhatsApp notifications
     if (typeof whatsappNotifier !== 'undefined') {
